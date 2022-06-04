@@ -13,13 +13,25 @@
     // has 3 states: "loading/pending", "successful/fulfilled" & "error/rejected"
     // it's asynchronous
     // example: btw you can make a new promise object through the promise constructor
-const myPromise = new Promise((resolve, reject) => {
-    const error = false;
-    if(!error) {
-        resolve("Yes. The promise has been resolved");
-    } else {
-        reject("No. The promise was rejected");
-    }
-});
+    const myPromise = new Promise((resolve, reject) => {
+        const error = false;
+        if(!error) {
+            resolve("Yes. The promise has been resolved");
+        } else {
+            reject("No. The promise was rejected");
+        }
+    });
 
-console.log(myPromise); //logs "Yes. The promise has been resolved" since the if statement 'error = false' is true
+    console.log(myPromise); //logs "Yes. The promise has been resolved" since the if statement 'error = false' is true
+    // the promise above doesn't display the 'direct' value exactly, hence the evolution of thenables
+
+// THENABLES
+    // it's basically a chained promise
+    myPromise.then(value => {
+        return value + 1;
+    }).then(newValue => {
+        console.log(newValue);
+    }).catch(err => {
+        consolelog(err);
+    })
+    // 
