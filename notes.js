@@ -25,7 +25,7 @@
     console.log(myPromise); //logs "Yes. The promise has been resolved" since the if statement 'error = false' is true
     // the promise above doesn't display the value, it displays the state of the promise hence the evolution of thenables
 
-// THENABLES
+// THENABLES (.then)
     // it's basically a chained promise but unlike a promise, it gives you the value to work with
     myPromise.then(value => {
         return value + 1;
@@ -58,9 +58,34 @@
     console.log(users); //here you'll get a pending state; as the fetch retrieves the data to your site/app
     
     // using fetch with thenables
-fetch("https://jsonplaceholder.typicode.com/users")
+    fetch("https://jsonplaceholder.typicode.com/users")
     .then(Response => {
         return Response.json();
     }).then(data => {
-        console.log(data);
+        data.forEach(user => {
+            console.log(user);
+        })
     })
+
+
+// ASYNC / AWAIT
+    //  it says, wait for this to happen before doing this... 
+    const myusers = {
+        userList: []
+    };
+    
+    // when defining async functions use the keyword "async" from the word go
+    // "await" can only be used inside an "async" function
+    const myCoolFunction = async () => {
+        const theResponse = await fetch("https://jsonplaceholder.typicode.com/users"); //wait to get the data from fetch then do the next step
+        const jsonUserData = await theResponse.json(); //the "json()" method also returns a promise hence why we use "await"
+        return jsonUserData;
+    };
+    
+    // anotherFunc here is an async function that returns the "jsonUserData" from "myCoolFunction" and logs it
+    const anotherFunc = async () => {
+        const data = await myCoolFunction();
+        console.log(data);
+    };
+
+    anotherFunc();
