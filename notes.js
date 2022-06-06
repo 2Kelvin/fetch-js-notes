@@ -84,8 +84,21 @@
     
     // anotherFunc here is an async function that returns the "jsonUserData" from "myCoolFunction" and logs it
     const anotherFunc = async () => {
-        const data = await myCoolFunction();
+        const data = await myCoolFunction(); //waiting for the data from "myCoolFunction" before logging it afterwards
         console.log(data);
     };
 
     anotherFunc();
+    
+    // async / await example
+    const getAllUserEmails = async () => {
+        const fetchedResponse = await fetch("https://jsonplaceholder.typicode.com/users");
+        const fetchedJsonUserData = await fetchedResponse.json();
+        const usersEmailsArray = fetchedJsonUserData.map(user => user.email);
+        console.log(usersEmailsArray);
+    };
+
+    getAllUserEmails();
+    
+
+    // 2ND PARAMETER OF THE FETCH API (obj) 
