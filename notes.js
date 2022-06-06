@@ -101,4 +101,17 @@
     getAllUserEmails();
     
 
-    // 2ND PARAMETER OF THE FETCH API (obj) 
+    // 2ND PARAMETER OF THE FETCH API (object) ->> the object has some settings that can be defined in it
+    const getDadJokes = async () => {
+        const response = await fetch("https://icanhazdadjoke.com/", { //the object( 2nd parameter ) ->> has so many other properties other than these 2, check them out on MDN
+            method: "GET", // 'GET' is the default method used but you can also use 'POST'
+            headers: { // it's a nested object that defines the type of data you want to receive, in this case we want 'json' data
+                Accept: "application/json"
+            }
+        });   
+        
+        const jsonDadJokesData = await response.json(); 
+        console.log(jsonDadJokesData.joke);
+    };
+
+    getDadJokes();
