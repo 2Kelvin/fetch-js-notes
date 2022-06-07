@@ -101,7 +101,8 @@
     getAllUserEmails();
     
 
-    // 2ND PARAMETER OF THE FETCH API (object) ->> the object has some settings that can be defined in it
+// 2ND PARAMETER OF THE FETCH API (object) ->> the object has some settings that can be defined in it
+// USING THE "GET" method; allows you to "read" the API data
     const getDadJokes = async () => {
         const response = await fetch("https://icanhazdadjoke.com/", { //the object( 2nd parameter ) ->> has so many other properties other than these 2, check them out on MDN
             method: "GET", // 'GET' is the default method used but you can also use 'POST'
@@ -115,3 +116,42 @@
     };
 
     getDadJokes();
+    
+    // "json" is the most used format in most cases but you can use other formats like "text" ...
+    // getting the dad-jokes data in form of a text instead of json
+    const getDadJokesText = async () => {
+        const response = await fetch("https://icanhazdadjoke.com/", { 
+            method: "GET", 
+            headers: { 
+                Accept: "text/plain"
+            }
+        });   
+        
+        const textDadJokesData = await response.text(); 
+        console.log(textDadJokesData);
+    };
+
+    getDadJokesText();
+    
+// USING A "POST" OBJECT IN FETCH ( method: "POST" )
+    // it allows you to "write" (edit & delete) the API data
+    const jokeObject = {
+        "id": "RZv4h3gV0g",
+        "joke": "Is the pool safe for diving? It deep ends.",
+    };
+
+    const postDataDadJoke = async (jokeObj) => {
+        const response = await fetch("https://httpbin.org/post", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(jokeObj)
+        });
+
+        const jsonResponse = await response.json();
+        console.log(jsonResponse);
+    };
+    
+    postDataDadJoke(jokeObject);
+
