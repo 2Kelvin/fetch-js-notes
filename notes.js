@@ -155,3 +155,11 @@
     
     postDataDadJoke(jokeObject);
 
+// REQUESTING $ ADDING DATA USING THE "FETCH URL"
+const requestJoke = async (firstName, lastName) => {
+    const response = await fetch(`http://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}`); // "?" in a fetch url signifies the start of the first parameter been passed on | "&" joins/ chains 2 parameters together
+    const jsonResponse = await response.json();
+    console.log(jsonResponse.value.joke);
+};
+
+requestJoke("Bruce", "Wayne");
