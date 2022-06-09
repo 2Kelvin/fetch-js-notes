@@ -190,5 +190,12 @@
         console.log(joke);
     };
 
-    // Procedural workflow of the above functions (joining them together to perform a single task)
+    // Procedural workflow of the above 4 functions (joining them together to perform a single task)
+    const processJokeRequest = async () => {
+        const requestData = getDataFromForm();
+        const requestURL = buildRequestUrl(requestData);
+        await nowRequestJoke(requestURL);
+        console.log("I got the joke! I got the joke!");
+    };
+    processJokeRequest();
     
