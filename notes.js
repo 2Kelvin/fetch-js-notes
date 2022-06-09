@@ -156,10 +156,39 @@
     postDataDadJoke(jokeObject);
 
 // REQUESTING $ ADDING DATA USING THE "FETCH URL"
-const requestJoke = async (firstName, lastName) => {
-    const response = await fetch(`http://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}`); // "?" in a fetch url signifies the start of the first parameter been passed on | "&" joins/ chains 2 parameters together
-    const jsonResponse = await response.json();
-    console.log(jsonResponse.value.joke);
-};
+    const requestJoke = async (firstName, lastName) => {
+        const response = await fetch(`http://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}&limitTo=[nerdy]`); // "?" in a fetch url signifies the start of the first parameter been passed on | "&" joins/ chains 2 parameters together
+        const jsonResponse = await response.json();
+        console.log(jsonResponse.value.joke);
+    };
 
-requestJoke("Bruce", "Wayne");
+    requestJoke("Bruce", "Wayne");
+
+// ABSTRACT INTO FUNCTIONS
+    // Getting Data From a Form
+    const getDataFromForm = () => {
+        const requestObj = {
+            firstName: "Jackie",
+            lastName: "Chan",
+            categories: ["nerdy"]
+        };   
+        return requestObj;
+    };
+
+    const buildRequestUrl = (requestData) => {
+        return (`http://api.icndb.com/jokes/random?${requestData.firstName}&${requestData.lastName}&${requestData.categories}`);
+    };
+
+    const nowRequestJoke = async (url) => {
+        const response = await fetch(url);
+        const jsonResponse = await response.json();
+        const joke = jsonResponse.value.joke;
+        postJokeToConsole(joke);
+    };
+
+    const postJokeToConsole = (joke) => {
+        console.log(joke);
+    };
+
+    // Procedural workflow of the above functions (joining them together to perform a single task)
+    
