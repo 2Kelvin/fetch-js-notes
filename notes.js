@@ -164,7 +164,7 @@
 
     requestJoke("Bruce", "Wayne");
 
-// ABSTRACT INTO FUNCTIONS
+// ABSTRACT INTO FUNCTIONS -> how ur code will look like in an actual app; here we're requesting data from a form and inserting it into the API data
     // Getting Data From a Form
     const getDataFromForm = () => {
         const requestObj = {
